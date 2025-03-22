@@ -1,0 +1,8 @@
+# Node modules
+node_modules/
+
+# Test and config files
+jest.config.js
+babel.config.json
+package-lock.json
+jest.config.js
