@@ -509,7 +509,7 @@ function divide(a: number, b: number): number {
 
 
 
-8. JSDoc cho Mảng (Arrays)
+#### 8. JSDoc cho Mảng (Arrays)
 
 - Cấu trúc:
 
