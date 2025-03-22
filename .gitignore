@@ -1,11 +1,9 @@
 # Node modules
 node_modules/
 
-# Build output
-dist/
-
 # Test and config files
 __tests__/
 jest.config.js
 babel.config.json
 package-lock.json
+jest.config.js
