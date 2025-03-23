@@ -11,6 +11,9 @@ export function LimitRange(max = 100, min = 0) {
     }
     return { max, min };
 }
+
+
+
 /**
  * Kiểm tra xem một giá trị có nằm trong khoảng cho phép hay không.
  * @param value - Giá trị cần kiểm tra.
@@ -20,6 +23,9 @@ export function LimitRange(max = 100, min = 0) {
 function isValueInRange(value, range) {
     return value >= range.min && value <= range.max;
 }
+
+
+
 /**
  * Enum đại diện cho các loại Bakugan.
  * @enum {number}
@@ -32,6 +38,9 @@ export var BakuganType;
     BakuganType[BakuganType["DARK"] = 3] = "DARK";
     BakuganType[BakuganType["LIGHT"] = 4] = "LIGHT"; // Loại ánh sáng
 })(BakuganType || (BakuganType = {}));
+
+
+
 /**
  * Đại diện cho một Bakugan
  * @class
@@ -45,6 +54,8 @@ export class Bakugan {
     static setRange(max, min) {
         this.range = LimitRange(max, min);
     }
+
+
     /**
      * Tạo một đối tượng Bakugan mới.
      * @param {string} name - Tên của Bakugan.
@@ -72,6 +83,9 @@ export class Bakugan {
         this.speed = speed;
         this.point = this.attack + this.defense + this.speed;
     }
+
+
+
     /**
      * Lấy thuộc tính của một Bakugan
      * @returns {BakuganType} - Enum loại của Bakugan
@@ -79,6 +93,9 @@ export class Bakugan {
     getType() {
         return this.type;
     }
+
+
+
     /**
      * Lấy tổng chỉ số của Bakugan
      * @returns {number} - chỉ số của Bakugan
@@ -86,6 +103,9 @@ export class Bakugan {
     getPoint() {
         return this.point;
     }
+
+
+
     /**
      * Chuyển đổi đối tượng Bakugan thành một object thông thường.
      * @returns {Object} - Một object biểu diễn Bakugan.
@@ -100,6 +120,9 @@ export class Bakugan {
             point: this.point
         };
     }
+
+
+
     /**
      * Chuyển đổi đối tượng Bakugan thành chuỗi JSON.
      * @returns {string} - Chuỗi JSON biểu diễn Bakugan.
@@ -108,6 +131,9 @@ export class Bakugan {
         return JSON.stringify(this.toObject());
     }
 }
+
+
+
 /**
  * Ngưỡng chung cho tất cả Bakugan
  */
@@ -123,35 +149,48 @@ Bakugan.range = LimitRange();
  * - 1: Khắc chế
  * - 2: Khắc chế gấp đôi
  */
-function RelationBakuganType(bakugan1, bakugan2) {
+function RelationBakuganType(bakugan1, bakugan2) 
+{
     const bakuganType1 = bakugan1.getType();
     const bakuganType2 = bakugan2.getType();
     if ((bakuganType1 === BakuganType.BLUE && bakuganType2 === BakuganType.GREEN) ||
         (bakuganType1 === BakuganType.GREEN && bakuganType2 === BakuganType.RED) ||
-        (bakuganType1 === BakuganType.RED && bakuganType2 === BakuganType.BLUE)) {
+        (bakuganType1 === BakuganType.RED && bakuganType2 === BakuganType.BLUE)) 
+    {
         return -1;
     }
+
     if ((bakuganType1 === BakuganType.GREEN && bakuganType2 === BakuganType.BLUE) ||
         (bakuganType1 === BakuganType.RED && bakuganType2 === BakuganType.GREEN) ||
-        (bakuganType1 === BakuganType.BLUE && bakuganType2 === BakuganType.RED)) {
+        (bakuganType1 === BakuganType.BLUE && bakuganType2 === BakuganType.RED)) 
+    {
         return 1;
     }
+
     if ([BakuganType.LIGHT, BakuganType.DARK].includes(bakuganType1) &&
-        ![BakuganType.LIGHT, BakuganType.DARK].includes(bakuganType2)) {
+        ![BakuganType.LIGHT, BakuganType.DARK].includes(bakuganType2)) 
+    {
         return 2;
     }
     if (![BakuganType.LIGHT, BakuganType.DARK].includes(bakuganType1) &&
-        [BakuganType.LIGHT, BakuganType.DARK].includes(bakuganType2)) {
+        [BakuganType.LIGHT, BakuganType.DARK].includes(bakuganType2)) 
+    {
         return -2;
     }
-    if (bakuganType1 === BakuganType.LIGHT && bakuganType2 === BakuganType.DARK) {
+
+    if (bakuganType1 === BakuganType.LIGHT && bakuganType2 === BakuganType.DARK) 
+    {
         return 1;
     }
-    if (bakuganType1 === BakuganType.DARK && bakuganType2 === BakuganType.LIGHT) {
+    if (bakuganType1 === BakuganType.DARK && bakuganType2 === BakuganType.LIGHT) 
+    {
         return -1;
     }
     return 0;
 }
+
+
+
 /**
  * Hàm so sánh 2 giá trị
  * @param obj1 - Đối tượng đầu tiên
@@ -164,6 +203,9 @@ function RelationBakuganType(bakugan1, bakugan2) {
 function comparePoint(obj1, obj2) {
     return obj1 < obj2 ? -1 : obj1 > obj2 ? 1 : 0;
 }
+
+
+
 /**
  * Khi 2 Bakugan giao chiến
  * @param bakugan1 : Bakugan đầu tiên
